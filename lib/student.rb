@@ -63,10 +63,11 @@ class Student
     SQL
     DB[:conn].execute(sql)[0..x-1].each do |row|
       self.new_from_db(row)
-      
-    
-    end 
+      end 
   end 
+  
+  def self.first_student_in_grade_10
+    
   
   
   def save
