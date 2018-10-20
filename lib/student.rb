@@ -86,7 +86,10 @@ end
     FROM students
     WHERE grade = ?
     SQL
-    DB[:conn].execute(sql, )
+    DB[:conn].execute(sql, x).map do |row|
+      self.new_from_db(row)
+    end 
+  end 
 
   
   
@@ -108,12 +111,11 @@ end
     )
     SQL
 
-    DB[:conn].execute(sql, x).map do |row|
-      self.new_from_db(row)
+    DB[:conn].execute(sql)
   end
 
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql)
-  end
+  end 
 end
